@@ -41,7 +41,7 @@ class Login extends React.Component{
     } 
 
     getToken = async (code) => {
-        return axios.post(`${hostname}/token/`, {
+        return axios.post(`${hostname}/api/token/`, {
             client_id: CLIENT_ID,
             client_secret: CLIENT_SECRET,
             grant_type: GRANT_TYPE,
