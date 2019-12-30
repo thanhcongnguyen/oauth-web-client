@@ -5,8 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import Login from './pages/Login';
-import Register from './pages/Register';
-import Provider from './pages/Provider';
+import Home from './pages/Home';
 import FindNotFound from './pages/FindNotFound';
 
 
@@ -15,14 +14,11 @@ export default function Routes() {
     return (
       <Router>
           <Switch>
-            <Route exact path="/oauth/v2/authorize">
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/login">
               <Login />
-            </Route>
-            <Route exact path="/register">
-              <Register />
-            </Route>
-            <Route exact path="/provider-register">
-              <Provider />
             </Route>
             <Route path="*">
               <FindNotFound />

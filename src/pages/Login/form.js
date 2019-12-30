@@ -1,6 +1,6 @@
 import React from 'react';
-
-export default class FormLogin extends React.Component{
+import { withRouter } from 'react-router-dom';
+class FormLogin extends React.Component{
     render(){
         return(
             <div className="limiter">
@@ -8,9 +8,8 @@ export default class FormLogin extends React.Component{
                 <div className="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
                     <div className="login100-form validate-form">
                         <span className="login100-form-title p-b-55">
-                            We Can Talk
+                            House Fast
                         </span>
-                        <div class="title-register"><h5>Đăng nhập vào hệ thống</h5></div>
                         <div className="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
                             <input 
                                 className="input100" 
@@ -49,16 +48,17 @@ export default class FormLogin extends React.Component{
                                 Đăng nhập
                             </button>
                         </div>
-    
-                        <div className="text-center w-full p-t-50">
-                            <span className="txt1">
-                                Chưa có tài khoản?
+
+                        <div class="text-center w-full p-t-42 p-b-22" >
+                            <span class="txt1">
+                                Đăng nhập với
                             </span>
-    
-                            <a className="txt1 bo1 hov1" href="/register">
-                                Đăng ký							
-                            </a>
-                        </div>
+					    </div>
+
+                        <a href="#" class="btn-google m-b-10" onClick={this.props.goLogin}>
+                            <img src="images/icons/wecantalk.jpg" alt="WECANTALK"/>
+                            Wecantalk
+                        </a>
                     </div>
                 </div>
             </div>
@@ -66,3 +66,6 @@ export default class FormLogin extends React.Component{
         )
     }
 }
+
+
+export default withRouter(FormLogin);

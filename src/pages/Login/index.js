@@ -4,113 +4,74 @@ import _ from 'lodash';
 import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-import { hostname } from '../../constants';
 import FormLogin from './form';
 import ConfirmLogin from './confirm';
+import './login.css';
+import { hostname, RESPONSE_TYPE, SCOPE, REDIRECT_URI, CLIENT_ID, GRANT_TYPE, CLIENT_SECRET } from '../../constants';
+import { randomString } from '../../utils/randomString';
 
 class Login extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            email: '',
-            password: '',
-            error: '',
-            redirect_uri: '',
-            client_id: '',
-            response_type: '',
-            state: '',
-            scope: '',
             data: '',
             error: ''
         }
     }
 
-    componentDidMount = () => {
-        const parsed = queryString.parse(this.props.history.location.search);
-        this.setState({
-            client_id: parsed.client_id,
-            redirect_uri: parsed.redirect_uri,
-            response_type: parsed.response_type,
-            scope: parsed.scope,
-            state: parsed.state
-        });
-    } 
-
-    onLogin = async () => {
-        let { email , password, client_id, redirect_uri, response_type, state, scope } = this.state;
-        if(!email || !password){
+    componentDidMount = async () => {
+        let token = localStorage.getItem('token');
+        if(token){
+            this.props.history.push('/');
+        }
+        let parsed = queryString.parse(this.props.location.search);
+        let state = localStorage.getItem('state');
+        if(state && state !== parsed.state){
             this.setState({
-                error: 'Vui lòng nhập đầy đủ thông tin!'
+                error: 'state không trùng khớp!'
             });
             return;
         }
-        return axios.post(`${hostname}/user/login`, {
-            email,
-            password,
-            client_id,
-            redirect_uri,
-            response_type,
-            state,
-            scope
+
+        if(parsed.code){
+            let token = await this.getToken(parsed.code);
+            await localStorage.setItem('token', token);
+            this.props.history.push('/');
+        }
+    } 
+
+    getToken = async (code) => {
+        return axios.post(`${hostname}/token/`, {
+            client_id: CLIENT_ID,
+            client_secret: CLIENT_SECRET,
+            grant_type: GRANT_TYPE,
+            code,
+            redirect_uri: REDIRECT_URI,
         })
         .then( (response) => {
-            this.setState({
-                data: response.data.data,
-                error: ''
-            });
+            return response.data.data;
         })
         .catch( (error) => {
             let errorMessage = _.get(error, 'response.data.error');
-            let errors = ['user not exits!', 'invalid password!', 'error_uri'];
-            let { redirect_uri } = this.state;
-                
-            if(errorMessage == 'invalid password!'){
-                this.setState({
-                    error: 'Mật khẩu không đúng!'
-                });
-                return;
-            }
-
-            if(errorMessage == 'user not exits!'){
-                this.setState({
-                    error: 'Tài khoản không đúng!'
-                });
-                return;
-            }
-
-            if(errors.indexOf(errorMessage) === -1 && redirect_uri){
-                let url = `${this.state.redirect_uri}/redirect?error=${errorMessage}`;
-                this.props.history.replace(url);
-                return;
-            }
-
             this.setState({
                 error: 'Yêu cầu không hợp lệ, vui lòng kiểm tra lại!'
             });
-
         });
     }
 
-    onInputEmail = (value) => {
-        this.setState({
-            email: value
+  
+    goLogin = async () => {
+        let state = randomString(20);
+        await localStorage.setItem('state', state);
+        const stringified = queryString.stringify({
+            response_type: RESPONSE_TYPE,
+            client_id: CLIENT_ID,
+            redirect_uri: REDIRECT_URI,
+            scope: SCOPE,
+            state
         });
-    }
-
-    onInputPassword = (value) => {
-        this.setState({
-            password: value
-        });
-    }
-
-    onDeny = () => {
-        let url = `${this.state.redirect_uri}/redirect?error=access_denied`;
-        this.props.history.replace(url);
-    }
-
-    onAllow = () => {
-        let url = `${this.state.redirect_uri}/redirect?code=${this.state.data.code}&state=${this.state.data.state}`;
-        this.props.history.replace(url);
+        let url = `${hostname}/oauth/v2/authorize?${stringified}`;
+        window.location.href = url;
     }
 
     render(){
@@ -122,10 +83,7 @@ class Login extends React.Component{
             {
                 this.state.data === '' 
                 && <FormLogin 
-                    onInputEmail = {this.onInputEmail} 
-                    onInputPassword = {this.onInputPassword}
-                    onLogin = {this.onLogin}
-                    error={this.state.error}
+                    goLogin={this.goLogin}
 
                 />
             }
@@ -133,8 +91,6 @@ class Login extends React.Component{
             {
                 this.state.data !== '' 
                 && <ConfirmLogin 
-                    onDeny={this.onDeny}
-                    onAllow={this.onAllow}
                 />
             }
 
