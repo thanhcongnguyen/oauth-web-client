@@ -78,7 +78,7 @@ class Login extends React.Component{
         return(
         <React.Fragment>
         <Helmet>
-        <title>Wecantalk.vn - Đăng nhập</title>
+        <title>Petplus.vn - Đăng nhập</title>
         </Helmet>
             {
                 this.state.data === '' 

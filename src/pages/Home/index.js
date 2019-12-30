@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import './home.css';
 class Home extends Component {
     constructor(props){
@@ -15,9 +16,14 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
-                trang chủ
-            </div>
+            <React.Fragment>
+                 <Helmet>
+                    <title>Petplus.vn - Trang chủ</title>
+                </Helmet>
+                <div>
+                    trang chủ
+                </div>
+            </React.Fragment>
         );
     }
 }
