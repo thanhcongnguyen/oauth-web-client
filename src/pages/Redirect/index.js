@@ -25,6 +25,7 @@ class Redirect extends React.Component {
         }
         if(parsed.code){
             this._getToken(parsed.code);
+            console.log('121212');
         }
     }
 
