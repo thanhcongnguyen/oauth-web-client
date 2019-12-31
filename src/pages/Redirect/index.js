@@ -42,7 +42,8 @@ class Redirect extends React.Component {
         })
         .catch( error => {
              this.setState({
-                 error: _.get(error, 'response.data.error')
+                 error: _.get(error, 'response.data.error'),
+                 loading: false
              });
         });
     }

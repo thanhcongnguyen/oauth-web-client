@@ -16,6 +16,10 @@ class OauthClient {
         });
     }
 
+    validateToken(){
+        return true;
+    }
+
     sharePost(){
         return axios.post(`${hostname}/api/token/`, {
             client_id: config.client_id,
