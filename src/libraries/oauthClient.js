@@ -6,13 +6,13 @@ export class OauthClient {
         this.hostname = 'https://wecantalk.vn/api';
     }
 
-    static getToken({client_id, client_secret, grant_type, code, redirect_uri}){
+    static getToken(config){
         return axios.post(`${this.hostname}/token/`, {
-            client_id,
-            client_secret,
-            grant_type,
-            code,
-            redirect_uri
+            client_id: config.client_id,
+            client_secret: config.client_secret,
+            grant_type: config.grant_type,
+            code: config.code,
+            redirect_uri: config.redirect_uri,
         });
     }
 
@@ -21,12 +21,6 @@ export class OauthClient {
     }
 
     static sharePost(){
-        return axios.post(`${this.hostname}/api/token/`, {
-            client_id: config.client_id,
-            client_secret: config.client_secret,
-            grant_type: config.grant_type,
-            code: config.code,
-            redirect_uri: config.redirect_uri,
-        });
+        return true;
     }
 }
