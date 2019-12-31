@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 import axios from 'axios';
 import { hostname, RESPONSE_TYPE, SCOPE, REDIRECT_URI, CLIENT_ID, GRANT_TYPE, CLIENT_SECRET } from '../../constants';
-const oauthClient = require('../../libraries/oauthClient');
+import { OauthClient } from '../../libraries/oauthClient';
 
 
 class Redirect extends React.Component {
@@ -30,7 +30,7 @@ class Redirect extends React.Component {
     }
 
     _getToken = (code) => {
-        oauthClient.getToken({
+        OauthClient.getToken({
             client_id: CLIENT_ID,
             client_secret: CLIENT_SECRET,
             grant_type: GRANT_TYPE,
