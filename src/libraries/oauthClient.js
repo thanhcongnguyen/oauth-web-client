@@ -6,7 +6,7 @@ export class OauthClient {
         this.hostname = 'https://wecantalk.vn/api';
     }
 
-    static getToken({client_id, client_secret, grant_type,code, redirect_uri}){
+    static getToken({client_id, client_secret, grant_type, code, redirect_uri}){
         return axios.post(`${this.hostname}/token/`, {
             client_id,
             client_secret,
