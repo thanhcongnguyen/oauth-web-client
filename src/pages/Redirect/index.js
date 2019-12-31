@@ -24,6 +24,13 @@ class Redirect extends React.Component {
             });
             return;
         }
+        if(parsed.error){
+            this.setState({
+                error: 'Yêu cầu uỷ quyền không được chấp nhận!'
+            });
+            return;
+        }
+
         if(parsed.code){
             this._getToken(parsed.code);
             console.log('121212');
