@@ -2,12 +2,8 @@ import axios from 'axios';
 import _ from 'lodash';
 
 export class OauthClient {
-    constructor(){
-        this.hostname = 'https://wecantalk.vn/api';
-    }
-
     static getToken(config){
-        return axios.post(`${this.hostname}/token/`, {
+        return axios.post('https://wecantalk.vn/api/token/', {
             client_id: config.client_id,
             client_secret: config.client_secret,
             grant_type: config.grant_type,
