@@ -1,13 +1,13 @@
 import axios from 'axios';
 import _ from 'lodash';
 
-class OauthClient {
+export class OauthClient {
     constructor(){
         this.hostname = 'https://wecantalk.vn/api';
     }
 
-    getToken(config){
-        return axios.post(`${hostname}/token/`, {
+    static getToken(config){
+        return axios.post(`${this.hostname}/token/`, {
             client_id: config.client_id,
             client_secret: config.client_secret,
             grant_type: config.grant_type,
@@ -16,12 +16,12 @@ class OauthClient {
         });
     }
 
-    validateToken(){
+    static validateToken(){
         return true;
     }
 
-    sharePost(){
-        return axios.post(`${hostname}/api/token/`, {
+    static sharePost(){
+        return axios.post(`${this.hostname}/api/token/`, {
             client_id: config.client_id,
             client_secret: config.client_secret,
             grant_type: config.grant_type,
@@ -35,11 +35,4 @@ class OauthClient {
             return _.get(error, 'response.data.error');
         });
     }
-
-    getInstance(){
-        return new OauthClient();
-    }
 }
-
-
-module.exports = OauthClient.getInstance();
