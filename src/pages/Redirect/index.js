@@ -18,22 +18,24 @@ class Redirect extends React.Component {
     componentDidMount = async () => {
         let parsed = queryString.parse(this.props.location.search);
         let state = localStorage.getItem('state');
+        
         if(state && state !== parsed.state){
             this.setState({
-                error: 'state không trùng khớp!'
+                error: 'state không trùng khớp!',
+                loading: false
             });
             return;
         }
         if(parsed.error == 'access_denied'){
             this.setState({
-                error: 'Yêu cầu truy cập không được chấp nhận!'
+                error: 'Yêu cầu truy cập không được chấp nhận!',
+                loading: false
             });
             return;
         }
 
         if(parsed.code){
             this._getToken(parsed.code);
-            console.log('121212');
         }
     }
 
@@ -45,7 +47,6 @@ class Redirect extends React.Component {
             code,
             redirect_uri: REDIRECT_URI,
         }).then( async response => {
-            console.log('response', response);
             let token = response.data.data;
             await localStorage.setItem('token', token);
             this.props.history.replace('/');
