@@ -24,9 +24,9 @@ class Redirect extends React.Component {
             });
             return;
         }
-        if(parsed.error){
+        if(parsed.error == 'access_denied'){
             this.setState({
-                error: 'Yêu cầu uỷ quyền không được chấp nhận!'
+                error: 'Yêu cầu truy cập không được chấp nhận!'
             });
             return;
         }
