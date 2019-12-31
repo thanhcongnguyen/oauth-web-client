@@ -19,7 +19,7 @@ class Redirect extends React.Component {
         let parsed = queryString.parse(this.props.location.search);
         let state = localStorage.getItem('state');
         
-        if(state && state !== parsed.state){
+        if(!parsed.error && state && state !== parsed.state){
             this.setState({
                 error: 'state không trùng khớp!',
                 loading: false
