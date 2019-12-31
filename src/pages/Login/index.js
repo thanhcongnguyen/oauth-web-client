@@ -24,42 +24,8 @@ class Login extends React.Component{
         if(token){
             this.props.history.push('/');
         }
-        let parsed = queryString.parse(this.props.location.search);
-        let state = localStorage.getItem('state');
-        if(state && state !== parsed.state){
-            this.setState({
-                error: 'state không trùng khớp!'
-            });
-            return;
-        }
-
-        if(parsed.code){
-            let token = await this.getToken(parsed.code);
-            await localStorage.setItem('token', token);
-            this.props.history.push('/');
-        }
     } 
 
-    getToken = async (code) => {
-        return axios.post(`${hostname}/api/token/`, {
-            client_id: CLIENT_ID,
-            client_secret: CLIENT_SECRET,
-            grant_type: GRANT_TYPE,
-            code,
-            redirect_uri: REDIRECT_URI,
-        })
-        .then( (response) => {
-            return response.data.data;
-        })
-        .catch( (error) => {
-            let errorMessage = _.get(error, 'response.data.error');
-            this.setState({
-                error: 'Yêu cầu không hợp lệ, vui lòng kiểm tra lại!'
-            });
-        });
-    }
-
-  
     goLogin = async () => {
         let state = randomString(20);
         await localStorage.setItem('state', state);
