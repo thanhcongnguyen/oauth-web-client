@@ -48,7 +48,7 @@ class Redirect extends React.Component {
             redirect_uri: REDIRECT_URI,
         }).then( async response => {
             let token = response.data.data;
-            await localStorage.setItem('token', token);
+            await localStorage.setItem('token', JSON.stringify(token));
             this.props.history.replace('/');
         })
         .catch( error => {
