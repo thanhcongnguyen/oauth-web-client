@@ -49,13 +49,13 @@ class FormLogin extends React.Component{
                             </button>
                         </div>
 
-                        <div class="text-center w-full p-t-42 p-b-22" >
-                            <span class="txt1">
+                        <div className="text-center w-full p-t-42 p-b-22" >
+                            <span className="txt1">
                                 Đăng nhập với
                             </span>
 					    </div>
 
-                        <a href="#" class="btn-google m-b-10" onClick={this.props.goLogin}>
+                        <a href="#" className="btn-google m-b-10" onClick={this.props.goLogin}>
                             <img src={require('../../static/images/icons/wecantalk.jpg')} alt="WECANTALK"/>
                             wecantalk
                         </a>
