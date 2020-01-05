@@ -1,0 +1,8 @@
+#footer{
+    height: 100px;
+    border: 2px dotted black;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    text-align: center;
+    line-height: 100px;
+}
