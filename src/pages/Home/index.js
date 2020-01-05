@@ -5,13 +5,17 @@ import './home.css';
 import axios from 'axios';
 import _ from 'lodash';
 import moment from 'moment';
+import { OauthClient } from '../../libraries/oauthClient';
+import ModalDelete from '../../components/Modal';
 class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
             data: [],
             text: '',
-            accessToken: ''
+            accessToken: '',
+            showModal: false,
+            id: ''
         }
     }
 
@@ -69,6 +73,52 @@ class Home extends Component {
         }
     }
 
+    showDelete = async (id) => {
+        await this.setState({
+            showModal: true,
+            id
+        });
+        console.log('id', this.state);
+    }
+
+    deletePost = async () => {
+        try {
+            const response = await axios.post('http://localhost:4000/api/post/delete', 
+                {
+                    id: this.state.id
+                },
+                {
+                    headers: {
+                        'authorization': `${this.state.accessToken}`,
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
+
+            if(response.data.status){
+                this.setState({
+                    showModal: false,
+                    id: ''
+                });
+                this.getPosts(this.state.accessToken);
+            }
+
+        } catch (error) {
+            
+        }
+    }
+
+    sharePost = async(id) => {
+        try {
+            const response = await OauthClient.sharePost(this.state.accessToken, id);
+            if(response.data.status){
+
+            }
+        } catch (error) {
+            
+        }
+    }
+
     onchangePost = (text) => {
         this.setState({ text });
     }
@@ -80,6 +130,10 @@ class Home extends Component {
                     <title>Petplus.vn - Trang chủ</title>
                 </Helmet>
                 <div id="home">
+                    <ModalDelete
+                        show={this.state.showModal}
+                        onDelete={this.deletePost}
+                    />
                     <div className="create-post">
                             <div className="input"> 
                                 <input
@@ -99,8 +153,16 @@ class Home extends Component {
                                     <div className="content">{element.content}</div>
                                     <div className="row mt-10 mb-10">
                                         <div className="col-10 date">{moment(element.createdAt).format('hh:mm:ss DD-MM-YYYY')}</div>
-                                        <button className="col-1" style={{textAlign: 'right'}}><span className="share"><i className="fa fa-share-alt" aria-hidden="true"/></span></button>
-                                        <button className="col-1 delete" style={{textAlign: 'left'}}><span className="delete"><i className="fa fa-trash" aria-hidden="true"/></span></button>
+                                        <button className="col-1" style={{textAlign: 'right'}} >
+                                            <span className="share">
+                                                <i className="fa fa-share-alt" aria-hidden="true"/>
+                                            </span>
+                                        </button>
+                                        <button className="col-1 delete" style={{textAlign: 'left'}} onClick={() => this.showDelete(element.id)}>
+                                            <span className="delete">
+                                                <i className="fa fa-trash" aria-hidden="true"/>
+                                            </span>
+                                        </button>
                                     </div>
                                 </div>
                             )   
