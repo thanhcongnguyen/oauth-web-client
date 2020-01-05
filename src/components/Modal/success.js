@@ -19,7 +19,7 @@ export default class ModalSuccess extends React.Component{
             <Modal show={this.props.show} onHide={this.handleClose}>
                 <Modal.Body>
                     <div className="content-success">
-                        Thao tác thành Công
+                        Tạo bài viết thành Công
                     </div>
                     <div className="wrap-btn-success">
                         
