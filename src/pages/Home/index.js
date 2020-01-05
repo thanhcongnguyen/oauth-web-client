@@ -45,7 +45,8 @@ class Home extends Component {
                     <div className="post">
                             <div className="content">nội dung</div>
                             <div className="row mt-10 mb-10">
-                                <button className="col-11" style={{textAlign: 'right'}}><span className="share"><i className="fa fa-share-alt" aria-hidden="true"/></span></button>
+                                <div className="date col-10"></div>
+                                <button className="col-1" style={{textAlign: 'right'}}><span className="share"><i className="fa fa-share-alt" aria-hidden="true"/></span></button>
                                 <button className="col-1 delete" style={{textAlign: 'left'}}><span className="delete"><i className="fa fa-trash" aria-hidden="true"/></span></button>
                             </div>
                     </div>
