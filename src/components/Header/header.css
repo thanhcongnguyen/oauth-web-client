@@ -2,7 +2,9 @@
     height: 100px;
     margin-bottom: 5px;
     margin-top: 20px;
-    border: 2px dotted black;
+    border: 2px dotted #d3d3d3;
+    /* background-color: #eae8e8; */
+    border-radius: 6px;
 }
 #header .logo{
     line-height: 100px;
