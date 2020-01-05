@@ -1,0 +1,43 @@
+#header{
+    height: 100px;
+    margin-bottom: 5px;
+    border: #d3d3d3 1px dotted;
+}
+#header .logo{
+    line-height: 100px;
+    padding-left: 100px;
+    font-size: 50px;
+    color: #ed2049;
+}
+
+#header .info{
+    line-height: 100px;
+    /* text-align: right; */
+}
+
+#header .info .avatar{
+    text-align: right;
+}
+#header .info .avatar img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    
+}
+
+#header .info .avatar .fullname{
+    margin-left: 15px;
+}
+
+#header .info .logout{
+    text-align: right;
+    padding-right: 50px;
+}
+
+#header .info .logout span{
+    cursor: pointer;
+}
+
+#header .info .logout span:hover{
+    color: #ed2049;
+}

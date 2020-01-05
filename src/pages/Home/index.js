@@ -8,10 +8,6 @@ class Home extends Component {
     }
 
     componentDidMount = async () => {
-        let token = await localStorage.getItem('token');
-        if(token === null){
-            this.props.history.push('/login');
-        }
     }
 
     render() {
