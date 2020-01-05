@@ -7,6 +7,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import { OauthClient } from '../../libraries/oauthClient';
 import ModalDelete from '../../components/Modal';
+import ModalSuccess from '../../components/Modal/success';
 class Home extends Component {
     constructor(props){
         super(props);
@@ -41,7 +42,6 @@ class Home extends Component {
                     data: _.get(response, 'data.data')
                 });
             }
-            console.log('response', this.state.data);
         } catch (error) {
             
         }
@@ -62,8 +62,9 @@ class Home extends Component {
             );
 
             if(response.data.status){
-                this.setState({
-                    text: ''
+                await this.setState({
+                    text: '',
+                    showModal: true
                 });
                 this.getPosts(this.state.accessToken);
             }
@@ -80,11 +81,12 @@ class Home extends Component {
         });
     }
 
-    hideDelete = async () => {
+    hide = async () => {
         await this.setState({
             showModal: false
         });
     }
+   
 
     deletePost = async () => {
         try {
@@ -138,11 +140,16 @@ class Home extends Component {
                     <ModalDelete
                         show={this.state.showModal}
                         onDelete={this.deletePost}
-                        hide={this.hideDelete}
+                        hide={this.hide}
+                    />
+                    <ModalSuccess 
+                        show={this.state.showModal}
+                        hide={this.hide}
                     />
                     <div className="create-post">
                             <div className="input"> 
                                 <input
+                                    id="input-content"
                                     placeholder="Bạn đang nghĩ gì ?"
                                     onChange = {(e) => this.onchangePost(e.target.value)} 
                                 />
