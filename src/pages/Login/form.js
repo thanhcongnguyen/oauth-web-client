@@ -8,7 +8,7 @@ class FormLogin extends React.Component{
                 <div className="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
                     <div className="login100-form validate-form">
                         <span className="login100-form-title p-b-55">
-                            PET PLUS
+                            PET +
                         </span>
                         <div className="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
                             <input 
@@ -56,8 +56,8 @@ class FormLogin extends React.Component{
 					    </div>
 
                         <a href="#" class="btn-google m-b-10" onClick={this.props.goLogin}>
-                            <img src="images/icons/wecantalk.jpg" alt="WECANTALK"/>
-                            Wecantalk
+                            <img src={require('../../static/images/icons/wecantalk.jpg')} alt="WECANTALK"/>
+                            wecantalk
                         </a>
                     </div>
                 </div>
