@@ -17,10 +17,22 @@
 }
 
 .btn-success{
-    background-color: gray;
+    background-color: green;
     color: #fff;
-    padding: 6px 30px;
+    padding: 10px 30px;
     border-radius: 4px;
     /* margin-left: 10px; */
-    float: center;
+    margin: 0 auto;
+}
+
+.content-success{
+    text-align: center !important;
+    height: 100px;
+    font-size: 20px;
+    line-height: 100px;
+}
+
+.wrap-btn-success{
+    display: block;
+    text-align: center !important;
 }

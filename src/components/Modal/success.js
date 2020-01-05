@@ -18,10 +18,10 @@ export default class ModalSuccess extends React.Component{
         return(
             <Modal show={this.props.show} onHide={this.handleClose}>
                 <Modal.Body>
-                    <div>
+                    <div className="content-success">
                         Thao tác thành Công
                     </div>
-                    <div>
+                    <div className="wrap-btn-success">
                         
                         <button className="btn-success" onClick={this.handleClose}>
                             Xác nhận
