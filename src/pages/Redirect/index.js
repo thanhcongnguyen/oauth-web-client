@@ -5,6 +5,7 @@ import _ from 'lodash';
 import axios from 'axios';
 import { hostname, RESPONSE_TYPE, SCOPE, REDIRECT_URI, CLIENT_ID, GRANT_TYPE, CLIENT_SECRET } from '../../constants';
 import { OauthClient } from '../../libraries/oauthClient';
+import './redirect.css';
 
 
 class Redirect extends React.Component {
@@ -28,7 +29,7 @@ class Redirect extends React.Component {
         }
         if(parsed.error == 'access_denied'){
             this.setState({
-                error: 'Yêu cầu truy cập không được chấp nhận!',
+                error: 'Yêu cầu uỷ quyền không được chấp nhận!',
                 loading: false
             });
             return;
@@ -64,7 +65,7 @@ class Redirect extends React.Component {
             return ''
         }
         return(
-            <div>
+            <div id="redirect">
                 {
                     this.state.error && <p>{this.state.error}</p>
                 }

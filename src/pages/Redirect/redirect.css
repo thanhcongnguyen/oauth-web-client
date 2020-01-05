@@ -1,0 +1,16 @@
+#redirect{
+    width: 500px;
+    margin: auto;
+    /* border: 1px solid; */
+    border-radius: 6px;
+    text-align: center;
+    background: #efeded;
+    height: 100px;
+    margin-top: 20% !important;
+}
+
+#redirect p {
+    line-height: 100px;
+    color: #ed2049;
+    font-size: 20px !important;
+}

@@ -25,17 +25,14 @@ export default function Routes() {
             <Route 
               exact 
               path="/login"
-              layout={Default}
               component={Login}
             />
             <Route 
               exact 
               path="/redirect"
-              layout={Default}
               component={Redirect}
             />
             <Route path="*"
-              layout={Default}
               component={FindNotFound}
             />
           </Switch>
