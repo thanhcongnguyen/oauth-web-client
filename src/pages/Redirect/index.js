@@ -66,9 +66,11 @@ class Redirect extends React.Component {
         }
         return(
             <div id="redirect">
+                <div className="content">
                 {
                     this.state.error && <p>{this.state.error}</p>
                 }
+                </div>
             </div>
         )
     }

@@ -1,12 +1,15 @@
 #redirect{
     width: 500px;
-    margin: auto;
+    margin: 0 auto;
     /* border: 1px solid; */
     border-radius: 6px;
     text-align: center;
     background: #efeded;
+}
+
+#redirect .content{
+    margin-top: 200px;  
     height: 100px;
-    margin-top: 20% !important;
 }
 
 #redirect p {
