@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-    Button,
     Modal
 } from 'react-bootstrap';
+import './modal.css';
 
 export default class ModalDelete extends React.Component{
     constructor(props){
@@ -41,11 +41,12 @@ export default class ModalDelete extends React.Component{
                         Bạn có muốn xoá bài viết này không ?
                     </div>
                     <div>
-                        <button variant="secondary" onClick={this.handleClose}>
-                            Huỷ
-                        </button>
-                        <button variant="primary" onClick={this.handleDelete}>
+                        
+                        <button className="btn-delete" onClick={this.handleDelete}>
                             Xoá
+                        </button>
+                        <button className="btn-cancel" onClick={this.handleClose}>
+                            Huỷ
                         </button>
                     </div>
                 </Modal.Body>
