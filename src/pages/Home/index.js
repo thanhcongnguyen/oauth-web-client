@@ -78,7 +78,12 @@ class Home extends Component {
             showModal: true,
             id
         });
-        console.log('id', this.state);
+    }
+
+    hideDelete = async () => {
+        await this.setState({
+            showModal: false
+        });
     }
 
     deletePost = async () => {
@@ -133,6 +138,7 @@ class Home extends Component {
                     <ModalDelete
                         show={this.state.showModal}
                         onDelete={this.deletePost}
+                        hide={this.hideDelete}
                     />
                     <div className="create-post">
                             <div className="input"> 

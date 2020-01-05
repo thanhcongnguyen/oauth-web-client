@@ -7,35 +7,22 @@ import './modal.css';
 export default class ModalDelete extends React.Component{
     constructor(props){
         super(props);
-        this.state = {
-            show: false
-        }
     }
 
-    componentDidUpdate = (prevProps) => {
-        if(this.props.show != prevProps.show){
-            this.setState({
-                show: this.props.show
-            });
-        }
-    }
+    
 
     handleClose = () => {
-        this.setState({
-            show: false
-        });
+        this.props.hide();
     }
 
     handleDelete = () => {
         this.props.onDelete();
-        this.setState({
-            show: false
-        });
+        this.props.hide()
     }
 
     render(){
         return(
-            <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal show={this.props.show} onHide={this.handleClose}>
                 <Modal.Body>
                     <div>
                         Bạn có muốn xoá bài viết này không ?
