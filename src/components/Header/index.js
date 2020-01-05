@@ -1,6 +1,13 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import './header.css';
-export default class Header extends React.Component{
+class Header extends React.Component{
+
+    logout = async () => {
+        await localStorage.removeItem('token');
+        this.props.history.replace('/login');
+    }
+
     render(){
         return(
             <div id="header">
@@ -13,7 +20,7 @@ export default class Header extends React.Component{
                                 <span className="fullname">Nguyễn Thành Công</span>
                             </div>
                             <div className="col-4 logout">
-                                <span>Đăng xuất</span>    
+                                <span onClick={this.logout}>Đăng xuất</span>    
                             </div>
                         </div>
                     </div>  
@@ -22,3 +29,5 @@ export default class Header extends React.Component{
         )
     }
 }
+
+export default withRouter(Header);
