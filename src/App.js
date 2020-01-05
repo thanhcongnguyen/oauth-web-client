@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from './pages/Login';
 import Routes from './routes';
-import './app.css';
+import './App.css';
 import './static/vendor/bootstrap/css/bootstrap.min.css';
 import './static/fonts/font-awesome-4.7.0/css/font-awesome.min.css'
 // import './static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' 
