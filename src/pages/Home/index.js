@@ -16,6 +16,7 @@ class Home extends Component {
             text: '',
             accessToken: '',
             showModal: false,
+            showSuccess: false,
             id: ''
         }
     }
@@ -64,7 +65,7 @@ class Home extends Component {
             if(response.data.status){
                 await this.setState({
                     text: '',
-                    showModal: true
+                    showSuccess: true
                 });
                 this.getPosts(this.state.accessToken);
             }
@@ -84,6 +85,12 @@ class Home extends Component {
     hide = async () => {
         await this.setState({
             showModal: false
+        });
+    }
+
+    hideSuccess = async() => {
+        await this.setState({
+            showSuccess: false
         });
     }
    
@@ -143,8 +150,8 @@ class Home extends Component {
                         hide={this.hide}
                     />
                     <ModalSuccess 
-                        show={this.state.showModal}
-                        hide={this.hide}
+                        show={this.state.showSuccess}
+                        hide={this.hideSuccess}
                     />
                     <div className="create-post">
                             <div className="input"> 
