@@ -22,7 +22,7 @@ export default class ModalShare extends React.Component{
         return(
             <Modal show={this.props.show} onHide={this.handleClose}>
                 <Modal.Body>
-                    <div className="modal-content">
+                    <div className="modal-content-mb">
                         Bạn có muốn chia sẻ bài viết này không ?
                     </div>
                     <div>
