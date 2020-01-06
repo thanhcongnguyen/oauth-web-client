@@ -5,7 +5,7 @@ const config = {
     client_id: '123456',
     client_secret: 'Aa@123456',
     grant_type: 'authorization_code',
-    code: 'read write',
+    scope: 'read write',
     redirect_uri: 'https://petplus.vn',
 }
 export class OauthClient{
@@ -15,7 +15,7 @@ export class OauthClient{
             client_id: config.client_id,
             client_secret: config.client_secret,
             grant_type: config.grant_type,
-            code,
+            code: code,
             redirect_uri: config.redirect_uri,
         });
     }
