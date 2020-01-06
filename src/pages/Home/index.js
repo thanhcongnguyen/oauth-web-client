@@ -130,9 +130,12 @@ class Home extends Component {
             );
 
             if(response.data.status){
-                this.setState({
+                await this.setState({
                     showModal: false,
-                    id: ''
+                    id: '',
+                    text: '',
+                    showSuccess: true,
+                    message: 'Xóa bài viết thành công'
                 });
                 this.getPosts(this.state.accessToken);
             }
