@@ -22,12 +22,12 @@ export default class ModalShare extends React.Component{
         return(
             <Modal show={this.props.show} onHide={this.handleClose}>
                 <Modal.Body>
-                    <div>
+                    <div className="modal-content">
                         Bạn có muốn chia sẻ bài viết này không ?
                     </div>
                     <div>
                         
-                        <button className="btn-delete" onClick={this.handleShare}>
+                        <button className="btn-share" onClick={this.handleShare}>
                             Chia sẻ
                         </button>
                         <button className="btn-cancel" onClick={this.handleClose}>

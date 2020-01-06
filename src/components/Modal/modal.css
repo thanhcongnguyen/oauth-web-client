@@ -25,14 +25,28 @@
     margin: 0 auto;
 }
 
+.btn-share{
+    background-color: green;
+    color: #fff;
+    padding: 6px 30px;
+    border-radius: 4px;
+    margin-left: 10px;
+    float: right;
+}
+
 .content-success{
     text-align: center !important;
     height: 100px;
     font-size: 20px;
     line-height: 100px;
+    margin-bottom: 20px;
 }
 
 .wrap-btn-success{
     display: block;
     text-align: center !important;
+}
+
+.modal-content{
+    margin-bottom: 20px;
 }
