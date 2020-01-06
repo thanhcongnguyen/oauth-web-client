@@ -9,7 +9,7 @@ class Route extends React.Component{
     componentDidMount = () => {
         let token = localStorage.getItem('token');
         if(!token){
-            props.history.push('/login');
+            this.props.history.push('/login');
         }
     }
 
