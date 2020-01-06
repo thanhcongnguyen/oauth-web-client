@@ -24,7 +24,7 @@ export default class ModalDelete extends React.Component{
         return(
             <Modal show={this.props.show} onHide={this.handleClose}>
                 <Modal.Body>
-                    <div>
+                    <div className="modal-content-mb">
                         Bạn có muốn xoá bài viết này không ?
                     </div>
                     <div>
