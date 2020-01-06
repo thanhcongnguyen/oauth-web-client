@@ -2,8 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 import _ from 'lodash';
-import axios from 'axios';
-import { hostname, RESPONSE_TYPE, SCOPE, REDIRECT_URI, CLIENT_ID, GRANT_TYPE, CLIENT_SECRET } from '../../constants';
 import { OauthClient } from '../../libraries/oauthClient';
 import './redirect.css';
 
@@ -41,13 +39,8 @@ class Redirect extends React.Component {
     }
 
     _getToken = (code) => {
-        OauthClient.getToken({
-            client_id: CLIENT_ID,
-            client_secret: CLIENT_SECRET,
-            grant_type: GRANT_TYPE,
-            code,
-            redirect_uri: REDIRECT_URI,
-        }).then( async response => {
+        OauthClient.getToken(code)
+        .then( async response => {
             let token = response.data.data;
             await localStorage.setItem('token', JSON.stringify(token));
             this.props.history.replace('/');
