@@ -33,7 +33,7 @@ class Home extends Component {
 
     getPosts = async (accessToken) => {
         try {
-            const response = await axios.get('http://localhost:4000/api/post/all', {
+            const response = await axios.get('https://petplus.vn/api/post/all', {
                 headers: {
                     authorization: accessToken
                 }
@@ -50,7 +50,7 @@ class Home extends Component {
 
     createPost = async () => {
         try {
-            const response = await axios.post('http://localhost:4000/api/post/create', 
+            const response = await axios.post('https://petplus.vn/api/post/create', 
                 {
                     content: this.state.text
                 },
@@ -97,7 +97,7 @@ class Home extends Component {
 
     deletePost = async () => {
         try {
-            const response = await axios.post('http://localhost:4000/api/post/delete', 
+            const response = await axios.post('https://petplus.vn/api/post/delete', 
                 {
                     id: this.state.id
                 },
