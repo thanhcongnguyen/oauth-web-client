@@ -20,7 +20,8 @@ class Home extends Component {
             showSuccess: false,
             showShare: false,
             dataShare: '',
-            id: ''
+            id: '',
+            message: ''
         }
     }
 
@@ -70,7 +71,8 @@ class Home extends Component {
             if(response.data.status){
                 await this.setState({
                     text: '',
-                    showSuccess: true
+                    showSuccess: true,
+                    message: 'Tạo bài viết thành công'
                 });
                 this.getPosts(this.state.accessToken);
             }
@@ -148,7 +150,11 @@ class Home extends Component {
                 created_by: this.state.dataShare.created_by
             });
             if(response.data.status){
-                console.log('sadasdas', response);
+                await this.setState({
+                    text: '',
+                    showSuccess: true,
+                    message: 'Chia sẻ bài viết thành công'
+                });
             }
         } catch (error) {
             
@@ -174,6 +180,7 @@ class Home extends Component {
                     <ModalSuccess 
                         show={this.state.showSuccess}
                         hide={this.hideSuccess}
+                        message={this.state.message}
                     />
 
                     <ModalShare
