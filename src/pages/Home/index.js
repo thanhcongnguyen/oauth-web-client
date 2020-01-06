@@ -19,7 +19,7 @@ class Home extends Component {
             showModal: false,
             showSuccess: false,
             showShare: false,
-            idShare: '',
+            dataShare: '',
             id: ''
         }
     }
@@ -99,10 +99,10 @@ class Home extends Component {
         });
     }
 
-    showShare = async (id) => {
+    showShare = async (data) => {
         await this.setState({
             showShare: true,
-            idShare: id
+            dataShare: data
         });
     }
 
@@ -142,7 +142,11 @@ class Home extends Component {
 
     sharePost = async() => {
         try {
-            const response = await OauthClient.sharePost(this.state.accessToken, this.state.idShare);
+            const response = await OauthClient.sharePost(this.state.accessToken, {
+                content:  this.state.dataShare.content,
+                id: this.state.dataShare.id,
+                created_by: this.state.dataShare.created_by
+            });
             if(response.data.status){
                 console.log('sadasdas', response);
             }
@@ -197,7 +201,7 @@ class Home extends Component {
                                     <div className="content">{element.content}</div>
                                     <div className="row mt-10 mb-10">
                                         <div className="col-10 date">{moment(element.createdAt).format('hh:mm:ss DD-MM-YYYY')}</div>
-                                        <button className="col-1" style={{textAlign: 'right'}} onClick={() => this.showShare(element.id)}>
+                                        <button className="col-1" style={{textAlign: 'right'}} onClick={() => this.showShare(element)}>
                                             <span className="share">
                                                 <i className="fa fa-share-alt" aria-hidden="true"/>
                                             </span>

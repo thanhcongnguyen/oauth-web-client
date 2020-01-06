@@ -20,16 +20,20 @@ export class OauthClient{
         });
     }
 
-    static sharePost(accessToken, content){
-        let conf = {
-            headers: {
-                authorization: 'Bearer ' + accessToken
+    static sharePost(accessToken, { content, id, created_by }){
+        return axios.post(`${hostname}/post/share`, 
+            {
+                content,
+                id,
+                created_by
             },
-            data: {
-                content
+            {
+                headers: {
+                    'authorization': `${accessToken}`,
+                    'Content-Type': 'application/json'
+                } 
             }
-        }
-        return axios.post(`${hostname}/post/share`, conf);
+        );
     }
 
 }
