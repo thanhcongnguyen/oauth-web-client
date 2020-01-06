@@ -8,6 +8,7 @@ import moment from 'moment';
 import { OauthClient } from '../../libraries/oauthClient';
 import ModalDelete from '../../components/Modal';
 import ModalSuccess from '../../components/Modal/success';
+import ModalShare from '../../components/Modal/share';
 class Home extends Component {
     constructor(props){
         super(props);
@@ -17,6 +18,8 @@ class Home extends Component {
             accessToken: '',
             showModal: false,
             showSuccess: false,
+            showShare: false,
+            idShare: '',
             id: ''
         }
     }
@@ -95,6 +98,19 @@ class Home extends Component {
             showSuccess: false
         });
     }
+
+    showShare = async (id) => {
+        await this.setState({
+            showShare: true,
+            idShare: id
+        });
+    }
+
+    hideShare = async(id) => {
+        await this.setState({
+            showShare: false
+        });
+    }
    
 
     deletePost = async () => {
@@ -124,11 +140,11 @@ class Home extends Component {
         }
     }
 
-    sharePost = async(id) => {
+    sharePost = async() => {
         try {
-            const response = await OauthClient.sharePost(this.state.accessToken, id);
+            const response = await OauthClient.sharePost(this.state.accessToken, this.state.idShare);
             if(response.data.status){
-
+                console.log('sadasdas', response);
             }
         } catch (error) {
             
@@ -155,6 +171,12 @@ class Home extends Component {
                         show={this.state.showSuccess}
                         hide={this.hideSuccess}
                     />
+
+                    <ModalShare
+                        show = {this.state.showShare}
+                        hide = {this.hideShare}
+                        onShare = {this.sharePost}
+                    />
                     <div className="create-post">
                             <div className="input"> 
                                 <input
@@ -175,7 +197,7 @@ class Home extends Component {
                                     <div className="content">{element.content}</div>
                                     <div className="row mt-10 mb-10">
                                         <div className="col-10 date">{moment(element.createdAt).format('hh:mm:ss DD-MM-YYYY')}</div>
-                                        <button className="col-1" style={{textAlign: 'right'}} >
+                                        <button className="col-1" style={{textAlign: 'right'}} onClick={() => this.showShare(element.id)}>
                                             <span className="share">
                                                 <i className="fa fa-share-alt" aria-hidden="true"/>
                                             </span>
