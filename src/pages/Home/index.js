@@ -28,6 +28,8 @@ class Home extends Component {
             let accessToken = parsed.access_token;
             await this.setState({accessToken});
             this.getPosts(accessToken);
+        }else{
+            this.props.history.push('/login');
         } 
     }
 
