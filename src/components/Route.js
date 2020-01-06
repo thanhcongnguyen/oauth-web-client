@@ -6,12 +6,12 @@ class Route extends React.Component{
         
     }
 
-    componentDidMount = () => {
-        let token = localStorage.getItem('token');
-        if(!token){
-            this.props.history.push('/login');
-        }
-    }
+    // componentDidMount = () => {
+    //     let token = localStorage.getItem('token');
+    //     if(!token){
+    //         this.props.history.push('/login');
+    //     }
+    // }
 
     render(){
         const Layout = this.props.layout;
